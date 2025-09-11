@@ -1,7 +1,7 @@
 <?php
 // admin/tournaments.php
 declare(strict_types=1);
-require_once __DIR__ . '/../new-pi/auth_check.php';
+require_once __DIR__ . '/../new-api/auth_check.php';
 require_once __DIR__ . '/../new-api/connection.php';
 
 $action = $_GET['a'] ?? 'list';
