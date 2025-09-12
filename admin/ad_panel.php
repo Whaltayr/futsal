@@ -22,6 +22,7 @@ require_once __DIR__ . '/../new-api/auth_check.php';
   <button data-tab="players">Jogadores</button>
   <button data-tab="staff">Staff</button>
   <button data-tab="matches">Jogos</button>
+  <button data-tab="results">Resultados</button>
 </nav>
 
   <main id="panelContent">

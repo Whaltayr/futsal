@@ -69,7 +69,7 @@ nav.admin-tabs [data-tab]:hover {
 }
 nav.admin-tabs [data-tab].is-active {
   background: #9da4b3;
-  border-color: #1f3d7a;
+  border-color: #000000;
 }
 
 #panelContent {
@@ -129,23 +129,23 @@ nav.admin-tabs [data-tab].is-active {
 .gol_input {
   min-width: 2rem;
 }
-.input[type="number"]{
-width: min(6rem,100%);  
+.input[type="number"] {
+  width: min(6rem, 100%);
 }
 .file {
-width: min(10rem,100%);
-padding: 10px 12px;
+  width: min(10rem, 100%);
+  padding: 10px 12px;
   border-radius: var(--radius-sm);
   border: 1px solid var(--border);
   background: #0a1325;
   color: var(--text);
   outline: none;
   transition: border-color 0.15s ease, box-shadow 0.15s ease,
-    background 0.2s ease; 
+    background 0.2s ease;
 }
 .input,
 .select {
-  width: min(14rem,100%);
+  width: min(14rem, 100%);
   padding: 10px 12px;
   border-radius: var(--radius-sm);
   border: 1px solid var(--border);
@@ -228,23 +228,20 @@ padding: 10px 12px;
 
 /* Table */
 .table-conteiner {
-width: 100%;
-  
+  width: 100%;
 }
 .table {
   width: min(100% - 2rem, 1350px);
   margin-inline: auto;
   border-collapse: collapse;
-  
+
   border-radius: var(--radius);
   background: rgba(10, 16, 32, 0.6);
 }
 .table th,
 .table td {
-  
   text-align: left;
   padding: 10px 12px;
-  ;
   vertical-align: middle;
   font-size: 0.95rem;
 }
@@ -263,11 +260,11 @@ width: 100%;
   background: rgba(255, 255, 255, 0.015);
 }
 @media (max-width: 850px) {
-.table-conteiner {
-  width: 100%;
-  overflow-x: scroll;
-  margin-bottom: 16px;
-}
+  .table-conteiner {
+    width: 100%;
+    overflow-x: scroll;
+    margin-bottom: 16px;
+  }
 }
 @media (max-width: 420px) {
   th {
@@ -278,7 +275,6 @@ width: 100%;
   }
   td::before {
     content: attr(data-cell);
-
     font-weight: 700;
     margin-right: 10px;
     color: var(--muted);
@@ -390,7 +386,15 @@ width: 100%;
   flex-wrap: wrap;
 }
 @keyframes toastIn {
-  from { opacity: 0; transform: translateY(8px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
-.toast { animation: toastIn .18s ease-out; }
+.toast {
+  animation: toastIn 0.18s ease-out;
+}

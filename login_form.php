@@ -68,7 +68,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 // Se já estiver logado, pode redirecionar diretamente
 if (!empty($_SESSION['user_id'])) {
-    header('Location: ad_panel.php');
+    header('Location: /futsal-pj/admin/ad_panel.php');
     exit;
 }
 ?>

@@ -1,0 +1,127 @@
+:root {
+  --bg: #0f172a; /* slate-900 */
+  --bg-elev: #111827; /* gray-900 */
+  --panel: #0b1220; /* deep blue */
+  --text: #e5e7eb; /* gray-200 */
+  --muted: #9ca3af; /* gray-400 */
+  --accent: #3b82f6; /* blue-500 */
+  --accent-2: #22c55e; /* green-500 */
+  --warn: #f59e0b; /* amber-500 */
+  --danger: #ef4444; /* red-500 */
+  --border: #371f1f; /* gray-800 */
+  --focus: #60a5fa; /* blue-400 */
+  --ok: #10b981; /* emerald-500 */
+
+  --radius: 10px;
+  --radius-big: 20px;
+  --radius-sm: 8px;
+  --shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+  --shadow-soft: 0 4px 12px rgba(0, 0, 0, 0.18);
+
+  --font: system-ui, -apple-system, Segoe UI, Roboto, Inter, Arial, sans-serif;
+}
+body {
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Arial;
+  margin: 0;
+}
+.wrap {
+  width: min(100% - 2rem, 1250px);
+  margin: 1rem auto;
+  padding: 1rem;
+  background: #fff;
+  box-shadow: 0 2px 8px rgb(0 0 0 / 0.1);
+  border-radius: 8px;
+}
+.topbar {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 10px;
+}
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.table thead th{
+  background: #626772;
+  color: #fff;
+}
+.table th,
+.table td {
+  text-align: left;
+  padding: 10px 12px;
+  vertical-align: middle;
+  font-size: 0.95rem;
+}
+.table tr:nth-child(odd) {
+  background: #f9fafb;
+}
+.table th:nth-child(2),
+.table td:nth-child(2) {
+  text-align: left;
+}
+.club {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.club img {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  object-fit: cover;
+  background: #eee;
+}
+.form {
+  display: flex;
+  gap: 6px;
+  justify-content: center;
+}
+.pill {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-size: 0.8rem;
+  font-weight: 800;
+  color: #fff;
+  text-decoration: none;
+}
+.pill.V {
+  background: #16a34a;
+} /* verde vitória */
+.pill.E {
+  background: #fb923c;
+} /* laranja empate */
+.pill.P {
+  background: #ef4444;
+} /* vermelho derrota */
+.next a {
+  color: #0f172a;
+  text-decoration: underline;
+}
+@media (max-width: 850px) {
+.table-conteiner {
+  width: 100%;
+  overflow-x: scroll;
+  margin-bottom: 16px;
+}
+}
+@media (max-width: 420px) {
+  th {
+    display: none;
+  }
+  td {
+    display: block;
+  }
+  td::before {
+    content: attr(data-cell);
+    font-weight: 700;
+    margin-right: 10px;
+  
+  }
+}
+select {
+  padding: 0.4rem 0.6rem;
+}

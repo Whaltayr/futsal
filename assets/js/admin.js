@@ -125,6 +125,24 @@
   // Anexa handlers específicos por aba
   function attachHandlers(name) {
     console.log('[admin.js] attachHandlers:', name);
+    
+    if (name === 'results') {
+    const form = document.getElementById('resultsFilter');
+    if (form) {
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const tid = form.tournament_id.value;
+        try {
+          const html = await request(`${PARTIALS}/results_panel.php?tournament_id=${encodeURIComponent(tid)}`);
+          content.innerHTML = html;
+          attachHandlers('results'); // rebind after re-render
+        } catch (err) {
+          console.error(err);
+          if (window.showToast) showToast({ title: 'Erro', msg: 'Falha ao carregar resultados', type: 'err' });
+        }
+      });
+    }
+  }
 
     if (name === "tournaments") {
       const form = document.getElementById("formTournament");
