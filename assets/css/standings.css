@@ -24,6 +24,105 @@ body {
   font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Arial;
   margin: 0;
 }
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: auto;
+}
+body {
+  background-color: rgb(139, 35, 35);
+}
+.top-section-header {
+  background-color: #1f1616;
+  color: white;
+  padding: 1rem 0;
+  text-align: center;
+  height: 100%;
+}
+.middle-section-header {
+  display: flex;
+  gap: 1rem;
+
+  background-color: #8c1007;
+  & nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 95%;
+    &,
+    .links ul {
+      display: flex;
+      gap: 1rem;
+      list-style: none;
+    }
+  }
+  & .logo {
+    padding: 1rem;
+    & img {
+      width: 6rem;
+      height: 6rem;
+      border-radius: 50%;
+      object-fit: cover;
+      object-position: center;
+      background: #eee;
+    }
+  }
+}
+select {
+  padding: 0.4rem;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+}
+.last-games {
+  /* border: #e6e6e6 2px solid; */
+  border-radius: 6px;
+  display: flex;
+  max-width: 20rem;
+  height: 8.5rem;
+  flex-direction: column;
+  overflow-x: scroll;
+
+}
+.last-games .texts {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  padding: 0.5rem 0.6rem;
+}
+.teams .team-score {
+  display: flex;
+  flex-direction: column;
+
+  & .team-group {
+    display: flex;
+    gap: 0.4rem;
+    padding: 0 0.7rem;
+    align-items: start;
+    justify-content: space-between;
+  }
+}
+
+.overlay {
+  border-image: fill 1 linear-gradient(#7e0b0b71, #130a0a80);
+}
+.bottom-section-header {
+  height: 20rem;
+  width: 100%;
+  background: url(/futsal-pj/assets/img/heroim2.jpg);
+  background-size: cover;
+  object-fit: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+/**! fim do css do header*/
+
+.links {
+  display: flex;
+  gap: 1rem;
+}
 .wrap {
   width: min(100% - 2rem, 1250px);
   margin: 1rem auto;
@@ -42,7 +141,7 @@ body {
   width: 100%;
   border-collapse: collapse;
 }
-.table thead th{
+.table thead th {
   background: #626772;
   color: #fff;
 }
@@ -102,11 +201,11 @@ body {
   text-decoration: underline;
 }
 @media (max-width: 850px) {
-.table-conteiner {
-  width: 100%;
-  overflow-x: scroll;
-  margin-bottom: 16px;
-}
+  .table-conteiner {
+    width: 100%;
+    overflow-x: scroll;
+    margin-bottom: 16px;
+  }
 }
 @media (max-width: 420px) {
   th {
@@ -119,9 +218,96 @@ body {
     content: attr(data-cell);
     font-weight: 700;
     margin-right: 10px;
-  
   }
 }
 select {
   padding: 0.4rem 0.6rem;
+}
+
+/* Row layout for last 5 games */
+.last-games-row {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(240px, 1fr);
+  gap: 12px;
+  overflow-x: auto;
+  padding-bottom: 4px; /* space for scrollbar */
+}
+
+/* Individual match card */
+.game-card {
+  display: block;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  padding: 10px;
+  color: #111827;
+  text-decoration: none;
+  min-width: 240px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+}
+.game-card:hover {
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+}
+
+/* Card header (date + phase) */
+.gc-header {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.85rem;
+  color: #6b7280;
+  margin-bottom: 8px;
+}
+.gc-date {
+  white-space: nowrap;
+}
+.gc-phase {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 50%;
+}
+
+/* Teams and score row */
+.gc-teams {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 8px;
+}
+.gc-side {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-width: 0; /* allow ellipsis */
+}
+.gc-side.gc-right {
+  justify-content: flex-end;
+}
+.gc-logo {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  object-fit: cover;
+  background: #eee;
+}
+.gc-name {
+  font-weight: 700;
+  color: #111827;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.gc-score {
+  font-weight: 800;
+  color: #374151;
+  min-width: 54px;
+  text-align: center;
+}
+
+/* Small screens: stack horizontally with scroll (already handled by overflow-x) */
+@media (max-width: 600px) {
+  .last-games-row {
+    grid-auto-columns: minmax(200px, 1fr);
+  }
 }

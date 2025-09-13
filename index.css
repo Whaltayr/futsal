@@ -1,7 +1,89 @@
-*, *::before, *::after {
-    margin: 0;
-    padding: auto;
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: auto;
 }
-body{
-    background-color: aqua;
+body {
+  background-color: rgb(139, 35, 35);
+}
+.top-section-header {
+  background-color: #132142;
+  color: white;
+  padding: 1rem 0;
+  text-align: center;
+  height: 8rem;
+}
+.middle-section-header {
+  display: flex;
+  gap: 1rem;
+
+  background-color: #8c1007;
+  & nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 95%;
+    &,
+    .links ul {
+      display: flex;
+      gap: 1rem;
+      list-style: none;
+    }
+  }
+  & .logo {
+    & img {
+      width: 6rem;
+      height: 6rem;
+      border-radius: 50%;
+      object-fit: cover;
+      object-position: center;
+      background: #eee;
+    }
+  }
+}
+select {
+  padding: 0.4rem;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+}
+.last-games {
+  background-color: #1f1616;
+  border: #e6e6e6 2px solid;
+  border-radius: 6px;
+  display: flex;
+  max-width: 20rem;
+  height: 7rem;
+  flex-direction: column;
+}
+.last-games .texts {
+  display: flex;
+  justify-content: space-around;
+  padding: 0.6rem 0;
+}
+.teams .team-score {
+  display: flex;
+  flex-direction: column;
+
+  & .team-group {
+    display: flex;
+    gap: 0.4rem;
+    padding: 0 1.5rem;
+    justify-content: space-between;
+  }
+}
+
+.overlay {
+  border-image: fill 1 linear-gradient(#7e0b0b71, #130a0a80);
+}
+.bottom-section-header {
+  height: 20rem;
+  width: 100%;
+  background: url(assets/img/heroim2.jpg);
+  background-size: cover;
+  object-fit: cover;
+
+  background-position: center;
+  background-repeat: no-repeat;
 }
