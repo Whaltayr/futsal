@@ -87,3 +87,95 @@ select {
   background-position: center;
   background-repeat: no-repeat;
 }
+/* Minimal styles for the dropdown - move to index.css if desired */
+.middle-section-header nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 10px 12px;
+}
+
+.logo {
+  font-weight: 800;
+  letter-spacing: 0.5px;
+}
+
+.links ul {
+  list-style: none;
+  display: flex;
+  gap: 14px;
+  padding: 0;
+  margin: 0;
+}
+
+.links li {
+  cursor: pointer;
+}
+
+.standings-select {
+  appearance: none;
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: 1px solid #d1d5db;
+  background: #ffffff;
+  color: #111827;
+  min-width: 220px;
+  font-size: 0.95rem;
+  line-height: 1.2;
+}
+
+.select-wrap {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+
+.select-wrap::after {
+  /* caret icon */
+  content: "▾";
+  position: absolute;
+  right: 10px;
+  color: #6b7280;
+  pointer-events: none;
+  font-size: 0.9rem;
+}
+
+@media (max-width: 640px) {
+  .links ul {
+    gap: 10px;
+  }
+
+  .standings-select {
+    min-width: 180px;
+  }
+}
+
+/*navbar*/
+
+/* .middle-section-header .navbar > .links {
+  display: none;
+} */
+.middle-section-header .navbar > .links .open {
+  display: block;
+}
+@media (max-width: 768px) {
+  .middle-section-header .navbar > .links {
+    display: none;
+  }
+  .middle-section-header .navbar > .logo {
+    display: block;
+  }
+}
+
+.custom-select {
+  position: relative;
+  display: inline-block;
+  & > button {
+    padding: 0.5rem 1rem;
+    border: none;
+    margin-bottom: 0.5rem;
+  }
+}
+
+

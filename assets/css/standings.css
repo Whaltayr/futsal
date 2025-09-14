@@ -1,28 +1,25 @@
 :root {
   --bg: #0f172a; /* slate-900 */
+  --bf-red: #8c1007;
+  --vcoloer-white: #f9fafb;
   --bg-elev: #111827; /* gray-900 */
   --panel: #0b1220; /* deep blue */
   --text: #e5e7eb; /* gray-200 */
   --muted: #9ca3af; /* gray-400 */
   --accent: #3b82f6; /* blue-500 */
+  --accent3:#F2B705;
   --accent-2: #22c55e; /* green-500 */
   --warn: #f59e0b; /* amber-500 */
   --danger: #ef4444; /* red-500 */
   --border: #371f1f; /* gray-800 */
   --focus: #60a5fa; /* blue-400 */
   --ok: #10b981; /* emerald-500 */
-
   --radius: 10px;
   --radius-big: 20px;
   --radius-sm: 8px;
   --shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
   --shadow-soft: 0 4px 12px rgba(0, 0, 0, 0.18);
-
   --font: system-ui, -apple-system, Segoe UI, Roboto, Inter, Arial, sans-serif;
-}
-body {
-  font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Arial;
-  margin: 0;
 }
 
 *,
@@ -31,21 +28,135 @@ body {
   margin: 0;
   padding: auto;
 }
+body::-webkit-scrollbar {
+  width: 0.6rem;
+}
+body::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background: var(--accent3);
+}
+body::-webkit-scrollbar-track {
+  background-color: #dddddd7a;
+  margin-block:  0.5em;
+}
+
 body {
+  font-family: var(--font);
   background-color: rgb(139, 35, 35);
 }
 .top-section-header {
-  background-color: #1f1616;
+  background-color: var(--vcoloer-white);
   color: white;
   padding: 1rem 0;
   text-align: center;
   height: 100%;
 }
+
+/* Row layout for last 5 games */
+.last-games-row {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(240px, 1fr);
+  gap: 3rem;
+  overflow-x: auto;
+  padding-bottom: 4px; /* space for scrollbar */
+}
+
+/* Individual match card */
+.game-card {
+  display: block;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  padding: 1.3rem 1.2rem;
+  color: #111827;
+  text-decoration: none;
+  min-width: 240px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+}
+.game-card:hover {
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+}
+
+/* Card header (date + phase) */
+.gc-header {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.85rem;
+  color: #6b7280;
+  margin-bottom: 8px;
+}
+.gc-date {
+  white-space: nowrap;
+}
+.gc-phase {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 50%;
+}
+
+/* Teams and score row */
+.gc-teams {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 8px;
+}
+.gc-side {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-width: 0; /* allow ellipsis */
+}
+.gc-side.gc-right {
+  justify-content: flex-end;
+}
+.gc-logo {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  object-fit: cover;
+  background: #eee;
+}
+.gc-name {
+  font-weight: 700;
+  color: #111827;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.gc-score {
+  font-weight: 800;
+  color: #374151;
+  min-width: 54px;
+  text-align: center;
+}
+
+/* Small screens: stack horizontally with scroll (already handled by overflow-x) */
+@media (max-width: 300px) {
+  .last-games-row {
+    grid-auto-columns: minmax(200px, 1fr);
+  }
+}
+
+/*! navbar*/
+.last-games-row::-webkit-scrollbar {
+  width: 0.6rem;
+}
+.last-games-row::-webkit-scrollbar-thumb {
+  scroll-snap-type: mandatory;
+  border-radius: 10px;
+  background: var(--accent3);
+}
+.last-games-row::-webkit-scrollbar-track {
+  background-color: #dddddd7a;
+}
 .middle-section-header {
   display: flex;
   gap: 1rem;
 
-  background-color: #8c1007;
+  background-color: var(--bf-red);
   & nav {
     display: flex;
     justify-content: space-between;
@@ -71,10 +182,10 @@ body {
   }
 }
 select {
-  padding: 0.4rem;
+  padding: .6rem 0.4rem ;
   border-radius: 6px;
-  border: 1px solid #ccc;
-  font-size: 1rem;
+  /* border: 1px solid #ccc; */
+  font-size: 1.1rem;
 }
 .last-games {
   /* border: #e6e6e6 2px solid; */
@@ -84,7 +195,6 @@ select {
   height: 8.5rem;
   flex-direction: column;
   overflow-x: scroll;
-
 }
 .last-games .texts {
   display: flex;
@@ -103,6 +213,17 @@ select {
     align-items: start;
     justify-content: space-between;
   }
+}
+
+/*?  main conteiner */
+main {
+  padding-top: 2rem;
+  background: var(--bf-red);
+  min-height: 100vh;
+  padding-bottom: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
 }
 
 .overlay {
@@ -128,7 +249,7 @@ select {
   margin: 1rem auto;
   padding: 1rem;
   background: #fff;
-  box-shadow: 0 2px 8px rgb(0 0 0 / 0.1);
+  box-shadow: 0 4px 8px rgb(0 0 0 / 0.2);
   border-radius: 8px;
 }
 .topbar {
@@ -218,96 +339,5 @@ select {
     content: attr(data-cell);
     font-weight: 700;
     margin-right: 10px;
-  }
-}
-select {
-  padding: 0.4rem 0.6rem;
-}
-
-/* Row layout for last 5 games */
-.last-games-row {
-  display: grid;
-  grid-auto-flow: column;
-  grid-auto-columns: minmax(240px, 1fr);
-  gap: 12px;
-  overflow-x: auto;
-  padding-bottom: 4px; /* space for scrollbar */
-}
-
-/* Individual match card */
-.game-card {
-  display: block;
-  background: #ffffff;
-  border: 1px solid #e5e7eb;
-  border-radius: 10px;
-  padding: 10px;
-  color: #111827;
-  text-decoration: none;
-  min-width: 240px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
-}
-.game-card:hover {
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
-}
-
-/* Card header (date + phase) */
-.gc-header {
-  display: flex;
-  justify-content: space-between;
-  font-size: 0.85rem;
-  color: #6b7280;
-  margin-bottom: 8px;
-}
-.gc-date {
-  white-space: nowrap;
-}
-.gc-phase {
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  max-width: 50%;
-}
-
-/* Teams and score row */
-.gc-teams {
-  display: grid;
-  grid-template-columns: 1fr auto 1fr;
-  align-items: center;
-  gap: 8px;
-}
-.gc-side {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  min-width: 0; /* allow ellipsis */
-}
-.gc-side.gc-right {
-  justify-content: flex-end;
-}
-.gc-logo {
-  width: 22px;
-  height: 22px;
-  border-radius: 50%;
-  object-fit: cover;
-  background: #eee;
-}
-.gc-name {
-  font-weight: 700;
-  color: #111827;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-.gc-score {
-  font-weight: 800;
-  color: #374151;
-  min-width: 54px;
-  text-align: center;
-}
-
-/* Small screens: stack horizontally with scroll (already handled by overflow-x) */
-@media (max-width: 600px) {
-  .last-games-row {
-    grid-auto-columns: minmax(200px, 1fr);
   }
 }

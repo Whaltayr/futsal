@@ -6,71 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="index.css" />
     <title>Document</title>
-    <style>
-        /* Minimal styles for the dropdown - move to index.css if desired */
-        .middle-section-header nav {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 16px;
-            padding: 10px 12px;
-        }
 
-        .logo {
-            font-weight: 800;
-            letter-spacing: .5px;
-        }
-
-        .links ul {
-            list-style: none;
-            display: flex;
-            gap: 14px;
-            padding: 0;
-            margin: 0;
-        }
-
-        .links li {
-            cursor: pointer;
-        }
-
-        .standings-select {
-            appearance: none;
-            padding: 8px 12px;
-            border-radius: 8px;
-            border: 1px solid #d1d5db;
-            background: #ffffff;
-            color: #111827;
-            min-width: 220px;
-            font-size: 0.95rem;
-            line-height: 1.2;
-        }
-
-        .select-wrap {
-            position: relative;
-            display: inline-flex;
-            align-items: center;
-        }
-
-        .select-wrap::after {
-            /* caret icon */
-            content: "▾";
-            position: absolute;
-            right: 10px;
-            color: #6b7280;
-            pointer-events: none;
-            font-size: .9rem;
-        }
-
-        @media (max-width: 640px) {
-            .links ul {
-                gap: 10px;
-            }
-
-            .standings-select {
-                min-width: 180px;
-            }
-        }
-    </style>
 </head>
 
 <body>
@@ -101,7 +37,7 @@
         </section>
 
         <section class="middle-section-header">
-            <nav>
+            <nav class="navbar">
                 <div class="logo"><img src="assets/img/logo.jpeg" alt=""></div>
 
                 <!-- Dropdown menu: Select-style -->
@@ -120,6 +56,8 @@
                             <option value="groupB">Resultados Grupo B</option>
                         </select>
                     </div>
+
+            
                 </div>
 
             </nav>
@@ -128,30 +66,7 @@
         <section class="bottom-section-header overlay"></section>
     </header>
 
-    <script>
-        // Handle dropdown changes
-        document.getElementById('standingsSelect').addEventListener('change', function (e) {
-            const val = e.target.value;
-            // TODO: Replace with your real navigation or filtering logic:
-            // Example options:
-            // - Navigate to different pages
-            // - Update content dynamically on the same page
-            switch (val) {
-                case 'tournament':
-                    // window.location.href = '/futsal-pj/standings.php';
-                    console.log('Selected: Classificação do torneio');
-                    break;
-                case 'groupA':
-                    // window.location.href = '/futsal-pj/standings.php?group=A';
-                    console.log('Selected: Classificação Grupo A');
-                    break;
-                case 'groupB':
-                    // window.location.href = '/futsal-pj/standings.php?group=B';
-                    console.log('Selected: Classificação Grupo B');
-                    break;
-            }
-        });
-    </script>
+
 </body>
 
 </html>

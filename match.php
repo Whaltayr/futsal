@@ -208,12 +208,12 @@ $fullTime = ($match['status'] === 'finalizado') ? "FT"
     <table class="facts-table" style="width:100%; border-collapse:collapse;">
       <thead>
         <tr>
-          <th style="text-align:left; padding:.5rem .6rem; border-bottom:1px solid var(--border); color:var(--muted);">Date</th>
-          <th style="text-align:left; padding:.5rem .6rem; border-bottom:1px solid var(--border); color:var(--muted);">Time</th>
-          <th style="text-align:left; padding:.5rem .6rem; border-bottom:1px solid var(--border); color:var(--muted);">League</th>
-          <th style="text-align:left; padding:.5rem .6rem; border-bottom:1px solid var(--border); color:var(--muted);">Season</th>
-          <th style="text-align:left; padding:.5rem .6rem; border-bottom:1px solid var(--border); color:var(--muted);">Match Day</th>
-          <th style="text-align:left; padding:.5rem .6rem; border-bottom:1px solid var(--border); color:var(--muted);">Full Time</th>
+          <th style="text-align:left; padding:.5rem .6rem; border-bottom:1px solid var(--border); color:var(--muted);">Data</th>
+          <th style="text-align:left; padding:.5rem .6rem; border-bottom:1px solid var(--border); color:var(--muted);">Hora</th>
+          <th style="text-align:left; padding:.5rem .6rem; border-bottom:1px solid var(--border); color:var(--muted);">Grupo</th>
+          <th style="text-align:left; padding:.5rem .6rem; border-bottom:1px solid var(--border); color:var(--muted);">Temporada</th>
+          <th style="text-align:left; padding:.5rem .6rem; border-bottom:1px solid var(--border); color:var(--muted);">Status</th>
+          <th style="text-align:left; padding:.5rem .6rem; border-bottom:1px solid var(--border); color:var(--muted);">Tempo</th>
         </tr>
       </thead>
       <tbody>
