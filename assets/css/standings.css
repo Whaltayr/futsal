@@ -7,7 +7,7 @@
   --text: #e5e7eb; /* gray-200 */
   --muted: #9ca3af; /* gray-400 */
   --accent: #3b82f6; /* blue-500 */
-  --accent3:#F2B705;
+  --accent3: #f2b705;
   --accent-2: #22c55e; /* green-500 */
   --warn: #f59e0b; /* amber-500 */
   --danger: #ef4444; /* red-500 */
@@ -37,7 +37,7 @@ body::-webkit-scrollbar-thumb {
 }
 body::-webkit-scrollbar-track {
   background-color: #dddddd7a;
-  margin-block:  0.5em;
+  margin-block: 0.5em;
 }
 
 body {
@@ -61,17 +61,22 @@ body {
   overflow-x: auto;
   padding-bottom: 4px; /* space for scrollbar */
 }
-
+.txtlast{
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: var(--panel);
+}
 /* Individual match card */
 .game-card {
   display: block;
-  background: #ffffff;
+  background: var(--warn);
   border: 1px solid #e5e7eb;
   border-radius: 10px;
   padding: 1.3rem 1.2rem;
   color: #111827;
   text-decoration: none;
-  min-width: 240px;
+  width: min(18rem, 20rem);
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
 }
 .game-card:hover {
@@ -181,8 +186,10 @@ body {
     }
   }
 }
+
+
 select {
-  padding: .6rem 0.4rem ;
+  padding: 0.6rem 0.4rem;
   border-radius: 6px;
   /* border: 1px solid #ccc; */
   font-size: 1.1rem;
@@ -243,6 +250,14 @@ main {
 .links {
   display: flex;
   gap: 1rem;
+}
+.links .nav-link {
+  color: var(--vcoloer-white);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1.1rem;
+  padding: 0.4rem 0.6rem;
+  border-radius: 6px;
 }
 .wrap {
   width: min(100% - 2rem, 1250px);
@@ -339,5 +354,101 @@ main {
     content: attr(data-cell);
     font-weight: 700;
     margin-right: 10px;
+  }
+}
+.site-footer {
+  margin-top: 2rem;
+  background: #0f172a;
+  color: #e5e7eb;
+}
+.site-footer a {
+  color: #e5e7eb;
+  text-decoration: none;
+}
+.site-footer a:hover {
+  text-decoration: underline;
+}
+.footer-inner {
+  width: min(1100px, 100% - 2rem);
+  margin: 0 auto;
+  display: grid;
+  gap: 1.2rem;
+  grid-template-columns: repeat(12, 1fr);
+  padding: 1.6rem 0;
+}
+.f-brand {
+  grid-column: span 6;
+}
+.f-links {
+  grid-column: span 3;
+}
+.f-contact {
+  grid-column: span 3;
+}
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+.brand-logo {
+  width: 36px;
+  height: 36px;
+  border-radius: 6px;
+  object-fit: cover;
+}
+.brand-name {
+  font-weight: 700;
+}
+.brand-desc {
+  margin: 0.6rem 0 0;
+  color: #cbd5e1;
+}
+.f-links h4,
+.f-contact h4 {
+  margin: 0 0 0.6rem;
+  font-size: 1rem;
+  color: #fff;
+}
+.f-links ul,
+.f-contact ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.35rem;
+}
+.f-social {
+  margin-top: 0.6rem;
+  display: flex;
+  gap: 0.6rem;
+}
+.social {
+  background: #1f2937;
+  padding: 0.4rem;
+  border-radius: 8px;
+  display: inline-flex;
+}
+.f-bottom {
+  border-top: 1px solid #1f2937;
+  padding: 0.8rem 0;
+  text-align: center;
+  color: #cbd5e1;
+}
+@media (max-width: 900px) {
+  .f-brand {
+    grid-column: span 12;
+  }
+  .f-links,
+  .f-contact {
+    grid-column: span 6;
+  }
+}
+@media (max-width: 640px) {
+  .footer-inner {
+    grid-template-columns: 1fr;
+  }
+  .f-links,
+  .f-contact {
+    grid-column: span 12;
   }
 }

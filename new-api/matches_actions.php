@@ -14,13 +14,13 @@ if ($mysqli->connect_errno) {
   exit;
 }
 
-function jfail(int $code, string $msg, string $detail = ''): void {
+function jfail(int $code, string $msg, string $detail = ''): void
+{
   http_response_code($code);
   echo json_encode(['ok' => false, 'erro' => $msg, 'detalhe' => $detail]);
   exit;
 }
-
-$csrf = $_POST['csrf'] ?? '';
+$csrf = $_POST['csrf'] ?? ($_POST['csrf_token'] ?? ($_SERVER['HTTP_X_CSRF_TOKEN'] ?? ''));
 if (!csrf_validate($csrf)) {
   jfail(403, 'CSRF inválido');
 }
@@ -28,53 +28,64 @@ if (!csrf_validate($csrf)) {
 $action = $_POST['action'] ?? '';
 if (!$action) jfail(400, 'Ação ausente');
 
-function intOrNull($v) {
+function intOrNull($v)
+{
   if ($v === '' || $v === null) return null;
   if (is_numeric($v)) return (int)$v;
   return null;
 }
 
-function clean_str(?string $s): string {
+function clean_str(?string $s): string
+{
   return trim((string)$s);
 }
 
 // Validate common fields for create/update
-function read_match_input(): array {
-  $phase_id = intOrNull($_POST['phase_id'] ?? null);
+function read_match_input(): array
+{
+  $phase_id     = intOrNull($_POST['phase_id'] ?? null);
   $team_home_id = intOrNull($_POST['team_home_id'] ?? null);
   $team_away_id = intOrNull($_POST['team_away_id'] ?? null);
+
+  // tenta direto e, se vazio, reconstrói de date+time
   $match_date = clean_str($_POST['match_date'] ?? '');
+  if ($match_date === '') {
+    $d = clean_str($_POST['match_date_date'] ?? '');
+    $t = clean_str($_POST['match_date_time'] ?? '');
+    if ($d !== '' && $t !== '') {
+      $match_date = $d . 'T' . $t; // ex.: 2025-09-15T20:30
+    }
+  }
+
   $round = clean_str($_POST['round'] ?? '');
-  // Scores default to 0 if blank
   $home_score = intOrNull($_POST['home_score'] ?? null);
   if ($home_score === null) $home_score = 0;
   $away_score = intOrNull($_POST['away_score'] ?? null);
   if ($away_score === null) $away_score = 0;
   $status = clean_str($_POST['status'] ?? 'agendado');
 
-  if (!$phase_id) jfail(400, 'phase_id obrigatório');
+  if (!$phase_id)     jfail(400, 'phase_id obrigatório');
   if (!$team_home_id) jfail(400, 'team_home_id obrigatório');
   if (!$team_away_id) jfail(400, 'team_away_id obrigatório');
   if ($team_home_id === $team_away_id) jfail(400, 'Times não podem ser iguais');
   if ($match_date === '') jfail(400, 'match_date obrigatório');
 
-  // Normalize datetime-local: ensure "YYYY-mm-dd HH:ii:ss"
+  // Normaliza para "YYYY-mm-dd HH:ii:ss"
   $dt = str_replace('T', ' ', $match_date);
   if (strlen($dt) === 16) $dt .= ':00';
 
-  // Validate status
-  $allowed = ['agendado','decorrendo','finalizado'];
+  $allowed = ['agendado', 'decorrendo', 'finalizado'];
   if (!in_array($status, $allowed, true)) $status = 'agendado';
 
   return [
-    'phase_id' => $phase_id,
+    'phase_id'     => $phase_id,
     'team_home_id' => $team_home_id,
     'team_away_id' => $team_away_id,
-    'match_date' => $dt,
-    'round' => $round,
-    'home_score' => $home_score,
-    'away_score' => $away_score,
-    'status' => $status,
+    'match_date'   => $dt,
+    'round'        => $round,
+    'home_score'   => $home_score,
+    'away_score'   => $away_score,
+    'status'       => $status,
   ];
 }
 
@@ -87,9 +98,8 @@ try {
             VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
     $stmt = $mysqli->prepare($sql);
     if (!$stmt) jfail(500, 'Falha ao preparar INSERT', $mysqli->error);
-
     $ok = $stmt->bind_param(
-      'iiississ',
+      'iiissiis', // i i i s s i i s
       $data['phase_id'],
       $data['team_home_id'],
       $data['team_away_id'],
@@ -118,7 +128,7 @@ try {
     if (!$stmt) jfail(500, 'Falha ao preparar UPDATE', $mysqli->error);
 
     $ok = $stmt->bind_param(
-      'iiississi',
+      'iiissiisi', // i i i s s i i s i
       $data['phase_id'],
       $data['team_home_id'],
       $data['team_away_id'],
@@ -151,9 +161,6 @@ try {
   }
 
   jfail(400, 'Ação inválida');
-
 } catch (Throwable $e) {
   jfail(500, 'Exceção', $e->getMessage());
 }
-
-?>

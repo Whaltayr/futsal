@@ -32,6 +32,7 @@ $token = csrf_token();
       <div class="form-content form-grid">
         <input type="hidden" name="csrf" value="<?= htmlspecialchars($token) ?>">
         <input type="hidden" name="action" value="create">
+        <input type="hidden" name="match_date" value="">
         <input type="hidden" name="id" value="">
         <label>Torneio
           <select class="select" name="tournament_id" id="matchTournament" required autocomplete="off">
@@ -71,9 +72,17 @@ $token = csrf_token();
             <?php endforeach; ?>
           </select>
         </label>
-        <label>Data/Hora
-          <input class="input" type="datetime-local" name="match_date" required autocomplete="off">
-        </label>
+
+        <label>Data
+          <input class="input" type="date" name="match_date_date"
+            value="<?= !empty($match['match_date']) ? htmlspecialchars(date('Y-m-d', strtotime($match['match_date']))) : '' ?>"
+            required></label>
+
+        <label>Hora
+          <input class="input" type="time" name="match_date_time"
+            value="<?= !empty($match['match_date']) ? htmlspecialchars(date('H:i', strtotime($match['match_date']))) : '' ?>"
+            required></label>
+
         <label>Rodada
           <input class="input" type="text" name="round" placeholder="ex.: 1ª rodada" autocomplete="off">
         </label>
