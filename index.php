@@ -248,7 +248,7 @@ $nextRows = $m->query("
 $forms = [];
 $nextFix = [];
 foreach ($teamIds as $tid) $forms[$tid] = [];
-
+/**/ 
 foreach ($finalRows as $mr) {
   $hid = (int)$mr['team_home_id'];
   $aid = (int)$mr['team_away_id'];
