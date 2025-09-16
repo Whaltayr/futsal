@@ -1,0 +1,101 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+/* estilos mínimos apenas para leitura; remova antes de aplicar o seu CSS */
+:root {
+  --accent: #0ea5a4;
+}
+
+body {
+  font-family: system-ui, Segoe UI, Roboto, Arial, sans-serif;
+  margin: 0;
+  color: #111;
+  background: #f4f6f9;
+}
+
+.layout {
+  display: flex;
+  min-height: 100vh;
+}
+
+.sidebar {
+  width: 260px;
+  padding: 18px;
+  background: #07203a;
+  color: #fff;
+}
+
+.sidebar h2 {
+  margin: 0 0 12px;
+  font-size: 18px;
+}
+
+.nav {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.nav button {
+  background: transparent;
+  border: 0;
+  color: #cfe7e7;
+  text-align: left;
+  padding: 10px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.nav button.active {
+  background: rgba(255, 255, 255, 0.06);
+  color: #fff;
+}
+
+main {
+  flex: 1;
+  padding: 18px;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 18px;
+}
+
+.content {
+  background: #fff;
+  padding: 16px;
+  border-radius: 8px;
+  min-height: 60vh;
+}
+
+.row {
+  display: flex;
+  gap: 12px;
+}
+
+.card {
+  background: #f8fafc;
+  padding: 12px;
+  border-radius: 8px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  padding: 8px;
+  border-bottom: 1px solid #eee;
+  text-align: left;
+}
+
+.small {
+  font-size: 13px;
+  color: #666;
+}
